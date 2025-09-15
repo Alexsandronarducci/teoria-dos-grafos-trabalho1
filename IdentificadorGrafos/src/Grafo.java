@@ -1,3 +1,4 @@
+// Alexsandro Narducci
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +73,59 @@ public class Grafo {
         }
         return "Quantidade de arestas: " + qtd + "\nArestas: " + arestas;
     }
+    
+    public String grausDoVertice() {
+        int n = matriz.length;
+        boolean dirigido = false;
+
+        // Testa se é dirigido
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matriz[i][j] != matriz[j][i]) {
+                    dirigido = true;
+                }
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if (dirigido) {
+            int[] grauEntrada = new int[n];
+            int[] grauSaida = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    grauSaida[i] += matriz[i][j]; // arestas que saem
+                    grauEntrada[j] += matriz[i][j]; // arestas que chegam
+                }
+            }
+
+            sb.append("Grafo dirigido\n");
+            for (int i = 0; i < n; i++) {
+                sb.append("Vértice ").append(i)
+                  .append(": entrada = ").append(grauEntrada[i])
+                  .append(", saída = ").append(grauSaida[i]).append("\n");
+            }
+        } else {
+            int[] graus = new int[n];
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    graus[i] += matriz[i][j];
+                }
+            }
+
+            sb.append("Grafo não-dirigido\n");
+            for (int i = 0; i < n; i++) {
+                sb.append("Vértice ").append(i)
+                  .append(": grau = ").append(graus[i]).append("\n");
+            }
+
+            sb.append("Sequência de graus: ");
+            for (int g : graus) sb.append(g).append(" ");
+        }
+
+        return sb.toString();
+    }
+
 
 }
