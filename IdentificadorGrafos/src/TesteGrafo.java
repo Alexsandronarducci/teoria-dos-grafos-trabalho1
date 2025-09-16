@@ -1,4 +1,5 @@
 // Alexsandro Narducci
+// Lucas Cândido Belletti
 public class TesteGrafo {
     public static void main(String[] args) {
         // grafo com 4 vértices
