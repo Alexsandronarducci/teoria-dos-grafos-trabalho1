@@ -1,5 +1,6 @@
 // Alexsandro Narducci
 // Lucas Cândido Belletti
+// Gabriel Sebold dos Santos
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,5 +129,42 @@ public class Grafo {
         return sb.toString();
     }
 
+     public String buscaEmProfundidade() {
+        int n = matriz.length;
+        boolean[] visitado = new boolean[n];
+        List<Integer> ordem = new ArrayList<>();
 
+        for (int i = 0; i < n; i++)
+            if (!visitado[i])
+                dfs(i, visitado, ordem);
+
+        return "Ordem da busca em profundidade: " + ordem;
+    }
+
+    private void dfs(int v, boolean[] visitado, List<Integer> ordem) {
+        visitado[v] = true;
+        ordem.add(v);
+        for (int j = 0; j < matriz.length; j++)
+            if (matriz[v][j] > 0 && !visitado[j])
+                dfs(j, visitado, ordem);
+    }
+
+    public class Main {
+    public static void main(String[] args) {
+        int[][] matriz = {
+            {0, 1, 0, 0},
+            {1, 0, 1, 1},
+            {0, 1, 0, 0},
+            {0, 1, 0, 0}
+        };
+
+        Grafo g = new Grafo(matriz);
+
+        System.out.println("Tipo: " + g.tipoDoGrafo());
+        System.out.println(g.arestasDoGrafo());
+        System.out.println(g.grausDoVertice());
+        System.out.println(g.buscaEmProfundidade());
+    }
+  }
 }
+
