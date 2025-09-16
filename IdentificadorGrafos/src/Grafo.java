@@ -148,23 +148,5 @@ public class Grafo {
             if (matriz[v][j] > 0 && !visitado[j])
                 dfs(j, visitado, ordem);
     }
-
-    public class Main {
-    public static void main(String[] args) {
-        int[][] matriz = {
-            {0, 1, 0, 0},
-            {1, 0, 1, 1},
-            {0, 1, 0, 0},
-            {0, 1, 0, 0}
-        };
-
-        Grafo g = new Grafo(matriz);
-
-        System.out.println("Tipo: " + g.tipoDoGrafo());
-        System.out.println(g.arestasDoGrafo());
-        System.out.println(g.grausDoVertice());
-        System.out.println(g.buscaEmProfundidade());
-    }
-  }
 }
 
